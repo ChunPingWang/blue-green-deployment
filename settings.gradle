@@ -1,0 +1,5 @@
+rootProject.name = 'blue-green-deployment'
+
+include 'blue-service'
+include 'green-service'
+include 'spring-cloud-gateway'

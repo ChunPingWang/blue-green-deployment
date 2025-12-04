@@ -1,0 +1,115 @@
+openapi: 3.0.3
+info:
+  title: 藍綠佈署展示系統 API
+  description: |
+    藍綠佈署展示系統的 API 規格，包含問候服務端點。
+
+    ## 服務清單
+    - **API Gateway** (Port 8080): 統一入口，負責流量分配
+    - **Blue Service** (Port 8081): 藍色版本服務
+    - **Green Service** (Port 8082): 綠色版本服務
+  version: 1.0.0
+  contact:
+    name: 藍綠佈署展示專案
+
+servers:
+  - url: http://localhost:8080
+    description: API Gateway
+  - url: http://localhost:8081
+    description: Blue Service (直接存取)
+  - url: http://localhost:8082
+    description: Green Service (直接存取)
+
+paths:
+  /greeting:
+    get:
+      summary: 取得問候訊息
+      description: |
+        透過 API Gateway 呼叫時，根據權重（20%/80%）隨機導向 Blue 或 Green Service。
+        直接呼叫後端服務時，回傳該服務的固定訊息。
+      operationId: getGreeting
+      tags:
+        - Greeting
+      responses:
+        '200':
+          description: 成功取得問候訊息
+          content:
+            text/plain:
+              schema:
+                type: string
+              examples:
+                blue:
+                  summary: 來自藍色服務的回應
+                  value: "Greeting from Blue Service"
+                green:
+                  summary: 來自綠色服務的回應
+                  value: "Greeting from Green Service"
+        '503':
+          description: 後端服務不可用
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '504':
+          description: 閘道逾時
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /actuator/health:
+    get:
+      summary: 健康檢查
+      description: 檢查服務健康狀態
+      operationId: healthCheck
+      tags:
+        - Actuator
+      responses:
+        '200':
+          description: 服務健康
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Health'
+              example:
+                status: "UP"
+        '503':
+          description: 服務異常
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Health'
+              example:
+                status: "DOWN"
+
+components:
+  schemas:
+    Error:
+      type: object
+      properties:
+        timestamp:
+          type: string
+          format: date-time
+        status:
+          type: integer
+        error:
+          type: string
+        message:
+          type: string
+        path:
+          type: string
+
+    Health:
+      type: object
+      properties:
+        status:
+          type: string
+          enum: [UP, DOWN]
+      required:
+        - status
+
+tags:
+  - name: Greeting
+    description: 問候服務端點
+  - name: Actuator
+    description: Spring Boot Actuator 端點
