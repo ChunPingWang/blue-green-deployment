@@ -24,8 +24,8 @@
 
 **目的**: 專案初始化和基本結構
 
-- [ ] T001 建立 scripts/ 目錄結構
-- [ ] T002 建立測試腳本骨架檔案 scripts/test-traffic.sh
+- [x] T001 建立 scripts/ 目錄結構
+- [x] T002 建立測試腳本骨架檔案 scripts/test-traffic.sh
 
 **檢查點**: 目錄結構已就緒
 
@@ -37,10 +37,10 @@
 
 **⚠️ 重要**: 使用者故事工作需等此階段完成才能開始
 
-- [ ] T003 實作腳本標頭與使用說明函式 scripts/test-traffic.sh
-- [ ] T004 實作參數驗證邏輯（檢查請求次數為正整數）scripts/test-traffic.sh
-- [ ] T005 實作 curl 可用性檢查 scripts/test-traffic.sh
-- [ ] T006 實作閘道連線測試函式 scripts/test-traffic.sh
+- [x] T003 實作腳本標頭與使用說明函式 scripts/test-traffic.sh
+- [x] T004 實作參數驗證邏輯（檢查請求次數為正整數）scripts/test-traffic.sh
+- [x] T005 實作 curl 可用性檢查 scripts/test-traffic.sh
+- [x] T006 實作閘道連線測試函式 scripts/test-traffic.sh
 
 **檢查點**: 基礎架構已就緒，使用者故事實作可開始
 
@@ -54,14 +54,14 @@
 
 ### 實作任務
 
-- [ ] T007 [US1] 實作請求迴圈與回應收集邏輯 scripts/test-traffic.sh
-- [ ] T008 [US1] 實作回應來源判斷（Blue/Green/Unknown）scripts/test-traffic.sh
-- [ ] T009 [US1] 實作統計計算邏輯（計數與百分比）scripts/test-traffic.sh
-- [ ] T010 [US1] 實作進度指示器（執行中進度條）scripts/test-traffic.sh
-- [ ] T011 [US1] 實作統計報告輸出格式 scripts/test-traffic.sh
-- [ ] T012 [US1] 實作執行時間計算與顯示 scripts/test-traffic.sh
-- [ ] T013 [US1] 實作錯誤處理（閘道未啟動、請求失敗）scripts/test-traffic.sh
-- [ ] T014 [US1] 新增腳本執行權限並測試完整流程 scripts/test-traffic.sh
+- [x] T007 [US1] 實作請求迴圈與回應收集邏輯 scripts/test-traffic.sh
+- [x] T008 [US1] 實作回應來源判斷（Blue/Green/Unknown）scripts/test-traffic.sh
+- [x] T009 [US1] 實作統計計算邏輯（計數與百分比）scripts/test-traffic.sh
+- [x] T010 [US1] 實作進度指示器（執行中進度條）scripts/test-traffic.sh
+- [x] T011 [US1] 實作統計報告輸出格式 scripts/test-traffic.sh
+- [x] T012 [US1] 實作執行時間計算與顯示 scripts/test-traffic.sh
+- [x] T013 [US1] 實作錯誤處理（閘道未啟動、請求失敗）scripts/test-traffic.sh
+- [x] T014 [US1] 新增腳本執行權限並測試完整流程 scripts/test-traffic.sh
 
 **檢查點**: 使用者故事 1 應可完整獨立運作與測試
 
@@ -75,10 +75,10 @@
 
 ### 實作任務
 
-- [ ] T015 [US2] 撰寫專案標題與簡介章節 README.md
-- [ ] T016 [US2] 撰寫前置需求章節（執行環境要求）README.md
-- [ ] T017 [US2] 撰寫快速開始章節（服務啟動步驟）README.md
-- [ ] T018 [US2] 撰寫測試腳本使用說明章節 README.md
+- [x] T015 [US2] 撰寫專案標題與簡介章節 README.md
+- [x] T016 [US2] 撰寫前置需求章節（執行環境要求）README.md
+- [x] T017 [US2] 撰寫快速開始章節（服務啟動步驟）README.md
+- [x] T018 [US2] 撰寫測試腳本使用說明章節 README.md
 
 **檢查點**: 使用者故事 2 應可完整獨立運作與測試
 
@@ -92,9 +92,9 @@
 
 ### 實作任務
 
-- [ ] T019 [US3] 撰寫架構說明章節（含 ASCII 圖）README.md
-- [ ] T020 [US3] 新增 Mermaid 架構圖 README.md
-- [ ] T021 [US3] 撰寫專案結構說明章節 README.md
+- [x] T019 [US3] 撰寫架構說明章節（含 ASCII 圖）README.md
+- [x] T020 [US3] 新增 Mermaid 架構圖 README.md
+- [x] T021 [US3] 撰寫專案結構說明章節 README.md
 
 **檢查點**: 使用者故事 3 應可完整獨立運作與測試
 
@@ -104,9 +104,9 @@
 
 **目的**: 影響多個使用者故事的改進項目
 
-- [ ] T022 [P] 執行 quickstart.md 驗證流程
-- [ ] T023 檢查所有輸出訊息的繁體中文一致性
-- [ ] T024 最終整合測試（完整執行腳本並驗證 README 說明）
+- [x] T022 [P] 執行 quickstart.md 驗證流程
+- [x] T023 檢查所有輸出訊息的繁體中文一致性
+- [x] T024 最終整合測試（完整執行腳本並驗證 README 說明）
 
 ---
 
