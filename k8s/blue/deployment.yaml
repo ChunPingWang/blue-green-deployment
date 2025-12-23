@@ -1,0 +1,46 @@
+# Blue Service Deployment
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: blue-service
+  namespace: blue
+  labels:
+    app: blue-service
+    version: blue
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: blue-service
+  template:
+    metadata:
+      labels:
+        app: blue-service
+        version: blue
+    spec:
+      containers:
+        - name: blue-service
+          image: blue-service:latest
+          imagePullPolicy: Never
+          ports:
+            - containerPort: 8081
+              name: http
+          livenessProbe:
+            httpGet:
+              path: /actuator/health
+              port: 8081
+            initialDelaySeconds: 30
+            periodSeconds: 10
+          readinessProbe:
+            httpGet:
+              path: /actuator/health
+              port: 8081
+            initialDelaySeconds: 10
+            periodSeconds: 5
+          resources:
+            requests:
+              memory: "256Mi"
+              cpu: "200m"
+            limits:
+              memory: "512Mi"
+              cpu: "500m"
