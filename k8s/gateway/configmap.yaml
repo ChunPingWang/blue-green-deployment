@@ -1,0 +1,47 @@
+# Gateway ConfigMap - K8s 環境專用配置
+# 藍綠部署切換：修改 Weight 值即可 (blue:green)
+# 目前設定：blue=0, green=10 (100% 流量導向 green)
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: gateway-config
+  namespace: gateway
+  labels:
+    app: api-gateway
+data:
+  application.yml: |
+    server:
+      port: 8080
+
+    spring:
+      application:
+        name: api-gateway
+      cloud:
+        gateway:
+          routes:
+            - id: blue-service
+              uri: http://blue-service.blue.svc.cluster.local:8081
+              predicates:
+                - Path=/greeting
+                - Weight=greeting-group, 0
+
+            - id: green-service
+              uri: http://green-service.green.svc.cluster.local:8082
+              predicates:
+                - Path=/greeting
+                - Weight=greeting-group, 10
+
+    management:
+      endpoints:
+        web:
+          exposure:
+            include: health,info,gateway
+      endpoint:
+        health:
+          show-details: always
+        gateway:
+          enabled: true
+
+    logging:
+      level:
+        org.springframework.cloud.gateway: INFO
