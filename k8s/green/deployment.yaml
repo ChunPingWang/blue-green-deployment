@@ -1,0 +1,46 @@
+# Green Service Deployment
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: green-service
+  namespace: green
+  labels:
+    app: green-service
+    version: green
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: green-service
+  template:
+    metadata:
+      labels:
+        app: green-service
+        version: green
+    spec:
+      containers:
+        - name: green-service
+          image: green-service:latest
+          imagePullPolicy: Never
+          ports:
+            - containerPort: 8082
+              name: http
+          livenessProbe:
+            httpGet:
+              path: /actuator/health
+              port: 8082
+            initialDelaySeconds: 30
+            periodSeconds: 10
+          readinessProbe:
+            httpGet:
+              path: /actuator/health
+              port: 8082
+            initialDelaySeconds: 10
+            periodSeconds: 5
+          resources:
+            requests:
+              memory: "256Mi"
+              cpu: "200m"
+            limits:
+              memory: "512Mi"
+              cpu: "500m"
