@@ -1,6 +1,6 @@
 # Gateway ConfigMap - K8s 環境專用配置
 # 藍綠部署切換：修改 Weight 值即可 (blue:green)
-# 目前設定：blue=0, green=10 (100% 流量導向 green)
+# 目前設定：blue=10, green=0 (100% 流量導向 blue)
 apiVersion: v1
 kind: ConfigMap
 metadata:
@@ -23,13 +23,13 @@ data:
               uri: http://blue-service.blue.svc.cluster.local:8081
               predicates:
                 - Path=/greeting
-                - Weight=greeting-group, 0
+                - Weight=greeting-group, 10
 
             - id: green-service
               uri: http://green-service.green.svc.cluster.local:8082
               predicates:
                 - Path=/greeting
-                - Weight=greeting-group, 10
+                - Weight=greeting-group, 0
 
     management:
       endpoints:
