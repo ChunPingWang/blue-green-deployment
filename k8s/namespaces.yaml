@@ -1,0 +1,36 @@
+# Kubernetes Namespaces 配置
+# 用於藍綠部署環境隔離
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: ingress
+  labels:
+    app.kubernetes.io/name: ingress
+    environment: infrastructure
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: gateway
+  labels:
+    app.kubernetes.io/name: gateway
+    environment: infrastructure
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: blue
+  labels:
+    app.kubernetes.io/name: blue
+    environment: production
+    version: blue
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: green
+  labels:
+    app.kubernetes.io/name: green
+    environment: production
+    version: green
