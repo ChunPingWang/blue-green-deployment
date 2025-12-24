@@ -1,5 +1,19 @@
 # 藍綠佈署展示專案
 
+> **分支說明**
+>
+> | 分支 | 說明 |
+> |------|------|
+> | `main` | 主分支，包含本機開發版本的藍綠部署實作 |
+> | `deploy-on-k8s` | Kubernetes 部署版本，包含完整的 K8s 配置檔與部署教學 |
+>
+> 如需 Kubernetes 部署功能，請切換至 `deploy-on-k8s` 分支：
+> ```bash
+> git checkout deploy-on-k8s
+> ```
+
+---
+
 使用 Spring Cloud Gateway 實現藍綠佈署（Blue-Green Deployment）的微服務展示專案，透過加權路由將流量分配至不同版本的後端服務。
 
 ## 專案簡介
